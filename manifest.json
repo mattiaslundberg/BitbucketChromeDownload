@@ -20,6 +20,6 @@
 		"default_icon": {
 			"19": "images/icon19.png"
 		},
-		"default_title": "BitBucket Patch Download"
+		"default_title": "Download Patch"
 	}
 }
