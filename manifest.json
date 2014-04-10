@@ -4,7 +4,8 @@
 	"version": "1.0.0",
 	"description": "Download patch files from BitBucket API.",
 	"permissions": [
-		"declarativeContent"
+		"declarativeContent",
+		"downloads"
 	],
 	"icons": {
 		"16": "images/icon16.png",
