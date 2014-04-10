@@ -1,8 +1,8 @@
 {
-	"name": "BitBucket Patch Download",
+	"name": "Bitbucket Patch Download",
 	"manifest_version": 2,
 	"version": "1.0.0",
-	"description": "Download patch files from BitBucket API.",
+	"description": "Download patch files from Bitbucket API.",
 	"permissions": [
 		"declarativeContent",
 		"downloads"
