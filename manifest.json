@@ -1,0 +1,24 @@
+{
+	"name": "BitBucket Patch Download",
+	"manifest_version": 2,
+	"version": "1.0.0",
+	"description": "Download patch files from BitBucket API.",
+	"permissions": [
+		"declarativeContent"
+	],
+	"icons": {
+		"16": "images/icon16.png",
+		"64": "images/icon64.png",
+		"128": "images/icon128.png"
+	},
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"page_action": {
+		"default_icon": {
+			"19": "images/icon19.png"
+		},
+		"default_title": "BitBucket Patch Download"
+	}
+}
