@@ -1,11 +1,18 @@
+var host = "bitbucket.org",
+	pathContains = "pull-request/",
+	suffixes = ["diff", "commits", "activity"];
+
+var conditions = suffixes.map(function(suffix) {
+	return new chrome.declarativeContent.PageStateMatcher({
+		pageUrl: {hostEquals: host, pathContains: pathContains, pathSuffix: suffix}
+	});
+});
+
+
 chrome.runtime.onInstalled.addListener(function() {
 	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
 		chrome.declarativeContent.onPageChanged.addRules([{
-			conditions: [
-				new chrome.declarativeContent.PageStateMatcher({
-					pageUrl: { hostEquals: "bitbucket.org", pathContains: "pull-request/" },
-				})
-			],
+			conditions: conditions,
 			actions: [ new chrome.declarativeContent.ShowPageAction() ]
 		}]);
 	});
