@@ -13,7 +13,7 @@ chrome.runtime.onInstalled.addListener(function() {
 	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
 		chrome.declarativeContent.onPageChanged.addRules([{
 			conditions: conditions,
-			actions: [ new chrome.declarativeContent.ShowPageAction() ]
+			actions: [new chrome.declarativeContent.ShowPageAction()]
 		}]);
 	});
 });
@@ -26,5 +26,5 @@ chrome.pageAction.onClicked.addListener(function(tab){
 
 	var url = "https://bitbucket.org/api/2.0/repositories/" + org + "/" + repo + "/pullrequests/" + num + "/patch";
 	var name = "bitbucket-" + org + "-" + repo + "-pullrequest-" + num + ".patch";
-	chrome.downloads.download({url: url, filename: name, conflictAction: "overwrite"}, function (id) {});
+	chrome.downloads.download({url: url, filename: name, conflictAction: "overwrite"}, function(id) {});
 });
