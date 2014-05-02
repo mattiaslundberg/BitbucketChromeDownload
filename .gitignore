@@ -1,0 +1,9 @@
+# Minified js
+*.min.js
+
+# Node modules
+node_modules/
+
+# Package
+*.zip
+
