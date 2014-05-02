@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-shell');
 	grunt.loadNpmTasks('grunt-zip');
 
 	grunt.initConfig({
@@ -16,8 +17,23 @@ module.exports = function(grunt) {
 			}
 		},
 		zip: {
-			'package.zip': ['background.min.js', 'manifest.json', 'images/*']
+			'package.zip': ['background.js', 'manifest.json', 'images/*']
+		},
+		shell: {
+			preparezip: {
+				command: function() {
+					return [
+						'mv background.js background.js.bak',
+						'mv background.min.js background.js',
+					].join('&&');
+				}
+			},
+			finalize: {
+				command: function() {
+					return 'mv background.js.bak background.js';
+				}
+			}
 		}
 	});
-	grunt.registerTask('default', ['jshint', 'uglify', 'zip']);
+	grunt.registerTask('default', ['jshint', 'uglify', 'shell:preparezip', 'zip', 'shell:finalize']);
 };
