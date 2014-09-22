@@ -22,5 +22,13 @@
 			"19": "images/icon19.png"
 		},
 		"default_title": "Download Patch"
-	}
+	},
+	"content_scripts": [{
+		"matches": [
+			"https://bitbucket.org/*/pull-request/*/commits*",
+			"https://bitbucket.org/*/pull-request/*/diff*",
+			"https://bitbucket.org/*/pull-request/*/activity*"
+		],
+		"js": ["content.js"]
+	}]
 }

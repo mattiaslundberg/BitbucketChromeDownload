@@ -12,12 +12,13 @@ module.exports = function(grunt) {
 		uglify: {
 			release: {
 				files: {
-					'background.min.js': ['background.js']
+					'background.min.js': ['background.js'],
+					'content.min.js': ['content.js']
 				}
 			}
 		},
 		zip: {
-			'package.zip': ['background.js', 'manifest.json', 'images/*']
+			'package.zip': ['background.js', 'content.js', 'manifest.json', 'images/*']
 		},
 		shell: {
 			preparezip: {
@@ -25,12 +26,14 @@ module.exports = function(grunt) {
 					return [
 						'mv background.js background.js.bak',
 						'mv background.min.js background.js',
+						'mv content.js content.js.bak',
+						'mv content.min.js content.js',
 					].join('&&');
 				}
 			},
 			finalize: {
 				command: function() {
-					return 'mv background.js.bak background.js';
+					return 'mv background.js.bak background.js && mv content.js.bak content.js';
 				}
 			}
 		}

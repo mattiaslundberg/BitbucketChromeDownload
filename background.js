@@ -18,13 +18,22 @@ chrome.runtime.onInstalled.addListener(function() {
 	});
 });
 
-chrome.pageAction.onClicked.addListener(function(tab){
-	var params = tab.url.split("/"),
-		org = params[3],
-		repo = params[4],
-		num = params[6];
+chrome.runtime.onMessage.addListener(function(request, sender) {
+	if (request.url)
+		download(request.url.split("/"));
+});
 
-	var url = "https://bitbucket.org/api/2.0/repositories/" + org + "/" + repo + "/pullrequests/" + num + "/patch";
+var download = function(url) {
+	var org = url[3],
+		repo = url[4],
+		num = url[6];
+
+	var dlurl = "https://bitbucket.org/api/2.0/repositories/" + org + "/" + repo + "/pullrequests/" + num + "/patch";
 	var name = "bitbucket-" + org + "-" + repo + "-pullrequest-" + num + ".patch";
-	chrome.downloads.download({url: url, filename: name, conflictAction: "overwrite"}, function(id) {});
+	chrome.downloads.download({url: dlurl, filename: name, conflictAction: "overwrite"}, function(id) {});
+};
+
+chrome.pageAction.onClicked.addListener(function(tab){
+	var params = tab.url.split("/");
+	download(params);
 });
