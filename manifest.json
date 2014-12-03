@@ -2,7 +2,7 @@
 	"name": "Bitbucket Patch Download",
 	"short_name": "Patch Download",
 	"manifest_version": 2,
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Download patch files from Bitbucket API.",
 	"permissions": [
 		"declarativeContent",
@@ -25,9 +25,7 @@
 	},
 	"content_scripts": [{
 		"matches": [
-			"https://bitbucket.org/*/pull-request/*/commits*",
-			"https://bitbucket.org/*/pull-request/*/diff*",
-			"https://bitbucket.org/*/pull-request/*/activity*"
+			"https://bitbucket.org/*"
 		],
 		"js": ["content.js"]
 	}]

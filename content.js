@@ -1,15 +1,47 @@
-var download = function() {
-	chrome.runtime.sendMessage({url: document.URL}, function(){});
-};
-var container = document.getElementById("pullrequest-actions"),
-	container_inner = document.createElement("div"),
-	button = document.createElement("button");
+(function() {
+	var reload = function() {
+		var match = document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-request\/.*\/commits.*/) ||
+			document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-request\/.*\/activity.*/) ||
+			document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-request\/.*\/diff.*/);
 
-container_inner.className = "aui-buttons";
-container.appendChild(container_inner);
+		if (match) {
+			var download = function() {
+				chrome.runtime.sendMessage({url: document.URL}, function(){});
+			};
+			var container = document.getElementById("pullrequest-actions"),
+				container_inner = document.createElement("div"),
+				button = document.createElement("button");
 
-container_inner.appendChild(button);
-button.className = "aui-button";
-button.innerHTML = "Download";
+			// We are probably on an incorrect page or something on the page has changed
+			if (!container) {
+				return;
+			}
 
-button.addEventListener("click", download);
+			// Check that the button is not added, in that case, don't add it again.
+			if (document.getElementById("bitbucketchromedownload")) {
+				return;
+			}
+
+			container_inner.className = "aui-buttons";
+			container_inner.id = "bitbucketchromedownload";
+			container.appendChild(container_inner);
+
+			container_inner.appendChild(button);
+			button.className = "aui-button";
+			button.innerHTML = "Download";
+
+			button.addEventListener("click", download);
+		}
+	};
+
+	// Handle that the page is refreshed with ajax and not page reloads.
+	var timeout = null;
+	document.addEventListener("DOMSubtreeModified", function() {
+		if(timeout) {
+			clearTimeout(timeout);
+		}
+		timeout = setTimeout(reload, 500);
+	}, false);
+
+	timeout = setTimeout(reload, 500);
+})();

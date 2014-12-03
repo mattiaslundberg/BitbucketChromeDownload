@@ -19,8 +19,9 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
-	if (request.url)
+	if (request.url) {
 		download(request.url.split("/"));
+	}
 });
 
 var download = function(url) {
