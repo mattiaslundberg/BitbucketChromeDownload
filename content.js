@@ -1,8 +1,8 @@
 (function() {
 	var reload = function() {
-		var match = document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-request\/.*\/commits.*/) ||
-			document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-request\/.*\/activity.*/) ||
-			document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-request\/.*\/diff.*/);
+		var match = document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-requests\/.*\/commits.*/) ||
+			document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-requests\/.*\/activity.*/) ||
+			document.URL.match(/https:\/\/bitbucket.org\/.*\/pull-requests\/.*\/diff.*/);
 
 		if (match) {
 			var download = function() {
@@ -34,7 +34,6 @@
 		}
 	};
 
-	// Handle that the page is refreshed with ajax and not page reloads.
 	var timeout = null;
 	document.addEventListener("DOMSubtreeModified", function() {
 		if(timeout) {
