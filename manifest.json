@@ -2,14 +2,13 @@
 	"name": "Bitbucket Patch Download",
 	"short_name": "Patch Download",
 	"manifest_version": 2,
-	"version": "0.2.3",
+	"version": "0.2.4",
 	"description": "Download patch files from Bitbucket API.",
 	"permissions": [
 		"declarativeContent",
 		"downloads"
 	],
 	"icons": {
-		"16": "images/icon16.png",
 		"64": "images/icon64.png",
 		"128": "images/icon128.png"
 	},
