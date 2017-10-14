@@ -2,7 +2,7 @@
   "name": "BitbucketPatchDownload",
   "version": "0.2.5",
   "dependencies": {
-    "grunt": "^0.4.2",
-    "grunt-contrib-jshint": "~0.6.3"
+    "grunt": "*",
+    "grunt-contrib-jshint": "*"
   }
 }
